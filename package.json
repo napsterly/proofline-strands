@@ -1,0 +1,20 @@
+{
+  "name": "proofline-strands",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A Strands-powered accountability agent for consequential business operations.",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test --test-isolation=none",
+    "check": "node --check src/server.js && node --check src/strands-agent.js && node --test --test-isolation=none"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@strands-agents/sdk": "^1.17.0",
+    "zod": "^4.6.5"
+  }
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proofline — Local connection setup</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .setup-shell{max-width:760px;margin:0 auto;padding:56px 22px 80px}.setup-card{padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(12,27,28,.88)}
+    .setup-card h1{font-size:clamp(32px,6vw,58px);margin:12px 0}.setup-card>p{color:var(--muted);line-height:1.6}.setup-grid{display:grid;gap:18px;margin-top:28px}
+    .setup-grid label{display:grid;gap:8px;color:var(--muted);font:600 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase}.setup-grid input{width:100%;box-sizing:border-box}
+    .setup-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.setup-actions button,.setup-actions a{min-height:48px;padding:0 20px;border-radius:12px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    #save{background:var(--mint);color:#05201b;border:0;font-weight:800}.secondary{border:1px solid var(--line);color:var(--text)}.setup-note{margin-top:20px;padding:14px;border-left:2px solid var(--mint);background:rgba(116,245,203,.05)}
+  </style>
+</head>
+<body>
+  <main class="setup-shell">
+    <a class="brand" href="/" aria-label="Back to Proofline">proofline</a>
+    <section class="setup-card">
+      <div class="eyebrow">LOCAL-ONLY · GITIGNORED</div>
+      <h1>Connect the proof.</h1>
+      <p>Values are written only to <code>data/integrations.json</code> on this computer. Existing secrets are never returned to this page.</p>
+      <form id="setup-form" class="setup-grid" autocomplete="off">
+        <label>Slack bot token<input id="slack-token" name="slackBotToken" type="password" placeholder="xoxb-…" spellcheck="false"></label>
+        <label>Slack channel ID<input id="slack-channel" name="slackChannelId" value="C0C2C94R8QG" placeholder="C…" spellcheck="false"></label>
+        <label>Stripe Test Mode secret key<input id="stripe-key" name="stripeSecretKey" type="password" placeholder="sk_test_…" spellcheck="false"></label>
+        <label>Salesforce consumer key<input id="salesforce-client" name="salesforceClientId" type="password" placeholder="Consumer key" spellcheck="false"></label>
+        <div class="setup-actions">
+          <button id="save" type="submit">Save locally</button>
+          <a id="salesforce-connect" class="secondary" href="/api/auth/salesforce/start">Authorize Salesforce</a>
+          <a class="secondary" href="/">Return to console</a>
+        </div>
+      </form>
+      <p id="setup-status" class="setup-note" role="status">Checking local configuration…</p>
+    </section>
+  </main>
+  <script src="/setup.js"></script>
+</body>
+</html>

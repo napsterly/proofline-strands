@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071011" />
+    <title>Proofline Strands — AI can propose. Proofline makes it prove.</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Proofline home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>proofline</span>
+      </a>
+      <div class="top-meta">
+        <span class="live-dot"><i></i> LIVE PROOF CONSOLE</span>
+        <button class="ghost-button" id="verify-button">Verify connections</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">AWS Strands accountability agent · Pro Agents track</p>
+          <h1>AI can propose.<br /><em>Proofline makes it prove.</em></h1>
+          <p class="lede">One human approval. Three independent systems. Zero invented success.</p>
+        </div>
+        <div class="truth-card">
+          <div class="truth-head">
+            <span>TRUTH CONTRACT</span>
+            <span class="mono">3 / 3</span>
+          </div>
+          <div class="truth-row">
+            <span class="service-icon slack">S</span>
+            <div><strong>Slack</strong><small>Who approved what?</small></div>
+            <span class="status-pill" data-service="slack">checking</span>
+          </div>
+          <div class="truth-row">
+            <span class="service-icon stripe">▰</span>
+            <div><strong>Stripe</strong><small>Did money actually move?</small></div>
+            <span class="status-pill" data-service="stripe">checking</span>
+          </div>
+          <div class="truth-row">
+            <span class="service-icon salesforce">☁</span>
+            <div><strong>Salesforce</strong><small>Does the record agree?</small></div>
+            <span class="status-pill" data-service="salesforce">checking</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="console-grid">
+        <aside class="control-card panel">
+          <div class="panel-kicker">01 · ACTION</div>
+          <h2>Refund with proof</h2>
+          <p class="subtle">Create synchronized truth across support, payments, and operations.</p>
+
+          <div class="agent-prompt">
+            <label for="agent-input">TELL THE AGENT WHAT YOU NEED</label>
+            <textarea id="agent-input" rows="3" placeholder="Refund $42 for case 00001001 on pi_… because it was charged twice."></textarea>
+            <button type="button" id="plan-button"><span>Draft safe action</span><b>STRANDS</b></button>
+            <p id="risk-summary" class="hidden"></p>
+          </div>
+
+          <form id="run-form">
+            <label>
+              <span>Salesforce case</span>
+              <input id="case-input" name="caseIdOrNumber" placeholder="Case ID or number" required />
+            </label>
+            <label>
+              <span>Stripe PaymentIntent</span>
+              <input id="payment-input" name="paymentIntentId" placeholder="pi_…" required />
+            </label>
+            <div class="field-row">
+              <label>
+                <span>Amount</span>
+                <div class="money-input"><b>$</b><input id="amount-input" name="amountDollars" type="number" min="0.50" step="0.01" value="42.00" required /></div>
+              </label>
+              <label>
+                <span>Currency</span>
+                <select id="currency-input" name="currency"><option value="usd">USD</option></select>
+              </label>
+            </div>
+            <label>
+              <span>Reason</span>
+              <input id="reason-input" name="reason" value="Duplicate subscription charge" required />
+            </label>
+
+            <button type="button" class="secondary-button" id="seed-button">
+              <span>Generate official test records</span><b>↗</b>
+            </button>
+
+            <label class="fault-toggle">
+              <input id="fault-input" type="checkbox" />
+              <span class="toggle-track"><i></i></span>
+              <span><strong>Reliability lab</strong><small>Drop Stripe’s response after commit</small></span>
+            </label>
+
+            <button class="primary-button" id="run-button" type="submit">
+              <span>Request bound approval</span><b>→</b>
+            </button>
+          </form>
+        </aside>
+
+        <section class="run-card panel" aria-live="polite">
+          <div class="panel-kicker">02 · LIVE RUN</div>
+          <div class="empty-state" id="empty-state">
+            <div class="orbit" aria-hidden="true"><i></i><i></i><i></i><b>✓</b></div>
+            <h2>Evidence, not optimism.</h2>
+            <p>Start a run to watch Proofline bind approval, execute once, recover ambiguity, and prove the final state.</p>
+          </div>
+
+          <div class="run-state hidden" id="run-state">
+            <div class="run-head">
+              <div>
+                <span class="run-label">CURRENT STATE</span>
+                <h2 id="state-title">PREPARING</h2>
+              </div>
+              <div class="state-glyph" id="state-glyph">01</div>
+            </div>
+
+            <div class="progress-track" id="progress-track">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+
+            <div class="digest-block">
+              <div><span>ACTION DIGEST</span><button id="copy-digest" title="Copy digest">copy</button></div>
+              <code id="digest-value">waiting for source state…</code>
+            </div>
+
+            <div class="approval-callout hidden" id="approval-callout">
+              <span class="pulse-ring"></span>
+              <div><strong>Approval is waiting in Slack</strong><small>React with ✅ to approve this exact digest.</small></div>
+              <button id="approval-button">Check now</button>
+            </div>
+
+            <div class="receipt-grid">
+              <article class="receipt" id="slack-receipt">
+                <div class="receipt-top"><span class="service-icon slack">S</span><span>Slack</span><b>—</b></div>
+                <strong>Approval receipt</strong><small>Not collected</small>
+              </article>
+              <article class="receipt" id="stripe-receipt">
+                <div class="receipt-top"><span class="service-icon stripe">▰</span><span>Stripe</span><b>—</b></div>
+                <strong>Mutation readback</strong><small>Not collected</small>
+              </article>
+              <article class="receipt" id="salesforce-receipt">
+                <div class="receipt-top"><span class="service-icon salesforce">☁</span><span>Salesforce</span><b>—</b></div>
+                <strong>Record reconciliation</strong><small>Not collected</small>
+              </article>
+            </div>
+
+            <div class="verdict hidden" id="verdict">
+              <span class="verdict-mark">✓</span>
+              <div><small>FINAL VERDICT</small><strong>PROVEN</strong></div>
+              <code id="evidence-digest"></code>
+            </div>
+          </div>
+        </section>
+
+        <aside class="timeline-card panel">
+          <div class="panel-kicker">03 · EVIDENCE LOG</div>
+          <div class="timeline" id="timeline">
+            <div class="timeline-empty">
+              <span>00:00.000</span>
+              <p>Every decision and readback will appear here.</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="principles">
+        <div><span>01</span><strong>Bind</strong><p>Approval covers a cryptographic digest, not a vague request.</p></div>
+        <div><span>02</span><strong>Execute once</strong><p>Idempotency turns retries from risk into routine.</p></div>
+        <div><span>03</span><strong>Admit unknown</strong><p>A dropped response is not success—and not automatic failure.</p></div>
+        <div><span>04</span><strong>Read it back</strong><p>Authoritative systems prove the outcome independently.</p></div>
+      </section>
+    </main>
+
+    <footer>
+      <span>PROOFLINE / AGENTS FOR HUMANS · PRO AGENTS</span>
+      <span>Built by Akinola Olayinka · 2026</span>
+    </footer>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
