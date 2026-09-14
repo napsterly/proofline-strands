@@ -7,8 +7,8 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "test": "node --test --test-isolation=none",
-    "check": "node --check src/server.js && node --check src/strands-agent.js && node --test --test-isolation=none",
+    "test": "node --test --test-isolation=none test/*.test.js",
+    "check": "node --check src/server.js && node --check src/strands-agent.js && node --test --test-isolation=none test/*.test.js",
     "build:agentcore": "node scripts/build-agentcore.mjs"
   },
   "engines": {

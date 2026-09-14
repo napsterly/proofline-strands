@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Proofline Strands architecture</title>
+  <desc id="desc">A support operator uses an AgentCore-hosted Strands agent. Guarded tools call a deterministic safety kernel, which coordinates Slack approval, Stripe Test Mode, and Salesforce evidence before returning a proven verdict.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#111b36"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity=".3"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7185a8"/></marker>
+    <style>.label{font:600 27px Inter,Segoe UI,sans-serif;fill:#f6f8ff}.small{font:500 18px Inter,Segoe UI,sans-serif;fill:#aebbd3}.title{font:700 50px Inter,Segoe UI,sans-serif;fill:#f6f8ff}.box{fill:#14213c;stroke:#314363;stroke-width:2}.accent{fill:#102b32;stroke:#64e9c5;stroke-width:3}.line{fill:none;stroke:#7185a8;stroke-width:4;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1600" height="900" rx="28" fill="url(#bg)"/>
+  <text x="80" y="86" class="title">Proofline Strands</text><text x="80" y="126" class="small">Human judgment in the loop. Machine execution under proof.</text>
+  <g filter="url(#shadow)">
+    <rect x="70" y="330" width="250" height="150" rx="26" class="box"/><text x="195" y="390" text-anchor="middle" class="label">Support</text><text x="195" y="426" text-anchor="middle" class="label">operator</text>
+    <rect x="410" y="230" width="320" height="155" rx="26" class="box"/><text x="570" y="290" text-anchor="middle" class="label">Amazon Bedrock</text><text x="570" y="328" text-anchor="middle" class="label">AgentCore Runtime</text>
+    <rect x="410" y="455" width="320" height="155" rx="26" class="accent"/><text x="570" y="515" text-anchor="middle" class="label">AWS Strands</text><text x="570" y="553" text-anchor="middle" class="label">agent + 5 tools</text>
+    <rect x="820" y="330" width="310" height="150" rx="26" class="accent"/><text x="975" y="389" text-anchor="middle" class="label">Deterministic</text><text x="975" y="427" text-anchor="middle" class="label">safety kernel</text>
+    <rect x="1230" y="180" width="290" height="120" rx="24" class="box"/><text x="1375" y="232" text-anchor="middle" class="label">Slack</text><text x="1375" y="265" text-anchor="middle" class="small">bound approval</text>
+    <rect x="1230" y="345" width="290" height="120" rx="24" class="box"/><text x="1375" y="397" text-anchor="middle" class="label">Stripe Test Mode</text><text x="1375" y="430" text-anchor="middle" class="small">idempotent refund</text>
+    <rect x="1230" y="510" width="290" height="120" rx="24" class="box"/><text x="1375" y="562" text-anchor="middle" class="label">Salesforce</text><text x="1375" y="595" text-anchor="middle" class="small">case + receipt</text>
+    <rect x="820" y="670" width="700" height="130" rx="26" class="box"/><text x="1170" y="723" text-anchor="middle" class="label">Independent evidence gate</text><text x="1170" y="762" text-anchor="middle" class="small">PROVEN only when Slack + Stripe + Salesforce agree</text>
+  </g>
+  <path d="M320 405H390" class="line"/><path d="M570 385V435" class="line"/><path d="M730 532C780 532 780 405 810 405" class="line"/>
+  <path d="M1130 385C1180 385 1180 240 1220 240" class="line"/><path d="M1130 405H1220" class="line"/><path d="M1130 425C1180 425 1180 570 1220 570" class="line"/>
+  <path d="M1375 300V660" class="line"/><path d="M1375 465V660" class="line"/><path d="M1375 630V660" class="line"/><path d="M820 735C720 735 760 590 810 500" class="line"/>
+</svg>

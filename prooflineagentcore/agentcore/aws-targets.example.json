@@ -1,0 +1,6 @@
+{
+  "default": {
+    "account": "YOUR_AWS_ACCOUNT_ID",
+    "region": "eu-north-1"
+  }
+}

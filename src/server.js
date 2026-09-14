@@ -1,5 +1,6 @@
 import "./load-env.js";
 import { createServer } from "node:http";
+import { readFileSync } from "node:fs";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,13 +14,18 @@ import { StrandsProoflineAgent } from "./strands-agent.js";
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(directory, "..");
-const port = Number(process.env.PORT || 8787);
-const host = process.env.HOST || "127.0.0.1";
+const port = Number(process.env.PORT || 8080);
+// AgentCore reaches the container over its network interface. Local developers
+// can retain loopback-only binding by setting HOST=127.0.0.1 in .env.
+const host = process.env.HOST || "0.0.0.0";
 const publicBaseUrl = process.env.PUBLIC_BASE_URL || `http://localhost:${port}`;
-const salesforceSessionPath = path.join(root, "data", "salesforce-session.json");
-const integrationConfigPath = path.join(root, "data", "integrations.json");
-const restoredSalesforceSession = await readOptionalJson(salesforceSessionPath);
-const restoredIntegrationConfig = await readOptionalJson(integrationConfigPath) || {};
+// CodeZip is mounted read-only under /var/task. Keep per-session evidence in
+// AgentCore's writable /tmp volume; local runs continue to use ./data.
+const dataDirectory = process.env.PROOFLINE_DATA_DIR || (directory.startsWith("/var/task") ? "/tmp/proofline-data" : path.join(root, "data"));
+const salesforceSessionPath = path.join(dataDirectory, "salesforce-session.json");
+const integrationConfigPath = path.join(dataDirectory, "integrations.json");
+const restoredSalesforceSession = readOptionalJsonSync(salesforceSessionPath);
+const restoredIntegrationConfig = readOptionalJsonSync(integrationConfigPath) || {};
 
 const integrationConfig = {
   slackBotToken: process.env.SLACK_BOT_TOKEN || restoredIntegrationConfig.slackBotToken,
@@ -28,7 +34,7 @@ const integrationConfig = {
   salesforceClientId: process.env.SALESFORCE_CLIENT_ID || restoredIntegrationConfig.salesforceClientId,
 };
 
-const store = new RunStore(path.join(root, "data", "runs.json"));
+const store = new RunStore(path.join(dataDirectory, "runs.json"));
 const slack = new SlackAdapter({
   token: integrationConfig.slackBotToken,
   channel: integrationConfig.slackChannelId,
@@ -54,7 +60,10 @@ const kernel = new ProoflineAgent({
 const strands = new StrandsProoflineAgent({
   kernel,
   store,
-  modelId: process.env.STRANDS_MODEL_ID,
+  // Nova Lite keeps the default deployment AWS-native, tool-capable, and
+  // economical. Operators can still select any Strands-supported Bedrock
+  // inference profile without changing source code.
+  modelId: process.env.STRANDS_MODEL_ID || "eu.amazon.nova-lite-v1:0",
 });
 
 const server = createServer(async (request, response) => {
@@ -184,9 +193,9 @@ function contentType(filePath) {
   return ({ ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml" })[path.extname(filePath)] || "application/octet-stream";
 }
 
-async function readOptionalJson(filePath) {
+function readOptionalJsonSync(filePath) {
   try {
-    return JSON.parse(await readFile(filePath, "utf8"));
+    return JSON.parse(readFileSync(filePath, "utf8"));
   } catch (error) {
     if (error.code === "ENOENT") return null;
     throw error;

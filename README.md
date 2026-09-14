@@ -25,6 +25,8 @@ Proofline gives the model useful agency without giving it authority it cannot sa
 
 ## Architecture
 
+![Proofline Strands architecture](./docs/architecture.svg)
+
 ```mermaid
 flowchart LR
     U[Support operator] --> AC[Amazon Bedrock AgentCore Runtime]
@@ -95,7 +97,7 @@ npm start
 
 Open <http://localhost:8787/setup.html> to store integration credentials in the local gitignored vault, then open <http://localhost:8787>.
 
-Strands uses Amazon Bedrock by default. Configure credentials with the AWS CLI, an IAM role, or `AWS_BEARER_TOKEN_BEDROCK`. Set `STRANDS_MODEL_ID` only when overriding the SDK default model.
+Proofline defaults to the AWS-native `eu.amazon.nova-lite-v1:0` inference profile. Configure credentials with the AWS CLI, an IAM role, or `AWS_BEARER_TOKEN_BEDROCK`; set `STRANDS_MODEL_ID` to select another Strands-supported Bedrock profile.
 
 ## AgentCore-ready contract
 
@@ -110,7 +112,7 @@ Build the small Node 22 deployment artifact:
 npm run build:agentcore
 ```
 
-Use `dist/agentcore.js` as the CodeZip entry point and include `dist/package.json` so the bundled runtime loads as an ES module. Configure `HOST=0.0.0.0` plus `PORT=8080`. See [AWS's Node.js direct-deployment guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-code-deploy-node.html) and [the deployment runbook](./docs/AGENTCORE.md).
+The repository includes an AgentCore CLI project under `prooflineagentcore/`. Copy `agentcore/aws-targets.example.json` to `agentcore/aws-targets.json`, add your AWS account and region, then run `agentcore validate` and `agentcore deploy` from that directory. The build script bundles the same application into its CodeZip entrypoint. Configure `HOST=0.0.0.0` plus `PORT=8080`. See [AWS's Node.js direct-deployment guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-code-deploy-node.html) and [the deployment runbook](./docs/AGENTCORE.md).
 
 ## Test the claims
 
