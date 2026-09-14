@@ -27,7 +27,8 @@ Proofline gives the model useful agency without giving it authority it cannot sa
 
 ```mermaid
 flowchart LR
-    U[Support operator] --> S[AWS Strands agent]
+    U[Support operator] --> AC[Amazon Bedrock AgentCore Runtime]
+    AC --> S[AWS Strands agent]
     S --> T[Guarded Proofline tools]
     T --> K[Deterministic safety kernel]
     K --> SF[Salesforce Developer Edition]
@@ -40,6 +41,7 @@ flowchart LR
     K --> V{All checks proven?}
     V -->|Yes| P[PROVEN]
     V -->|No| B[BLOCKED or UNKNOWN]
+    AC --> CW[CloudWatch logs and traces]
 ```
 
 The Strands layer has five narrow tools:
@@ -102,7 +104,13 @@ The same server implements the Amazon Bedrock AgentCore Runtime HTTP contract:
 - `GET /ping` — runtime health
 - `POST /invocations` — invoke the Strands agent with `{ "prompt": "..." }`
 
-For deployment, set `HOST=0.0.0.0` and `PORT=8080`, then package the application for AgentCore Runtime. See [AWS's Node.js direct-deployment guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-code-deploy-node.html).
+Build the small Node 22 deployment artifact:
+
+```bash
+npm run build:agentcore
+```
+
+Use `dist/agentcore.js` as the CodeZip entry point and include `dist/package.json` so the bundled runtime loads as an ES module. Configure `HOST=0.0.0.0` plus `PORT=8080`. See [AWS's Node.js direct-deployment guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started-code-deploy-node.html) and [the deployment runbook](./docs/AGENTCORE.md).
 
 ## Test the claims
 

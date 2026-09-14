@@ -17,6 +17,7 @@ The following work was created specifically for this project on September 14, 20
 - Strands operator agent with five custom guarded tools
 - Sequential tool-execution policy and evidence-grounded system prompt
 - AgentCore-compatible `/ping` and `/invocations` runtime endpoints
+- Reproducible Node 22 AgentCore bundle and deployment runbook
 - Strands boundary tests
 - Pro Agents positioning, architecture, documentation, and a new demo narrative
 
