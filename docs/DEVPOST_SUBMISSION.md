@@ -71,4 +71,4 @@ AWS Strands Agents SDK, Amazon Bedrock, Amazon Nova Lite, Amazon Bedrock AgentCo
 ## Links
 
 - Code: https://github.com/napsterly/proofline-strands
-- Demo video: add the public YouTube or Vimeo URL before submission
+- Demo video: https://youtu.be/ebHoo7YhQ-w

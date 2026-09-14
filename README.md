@@ -10,7 +10,7 @@ Proofline is an AWS Strands accountability agent for consequential business oper
 
 ## Demo
 
-The public YouTube/Vimeo demo will be linked here before submission. It includes both the pitch and an end-to-end run against official vendor test/developer environments.
+[Watch the 2:42 demo on YouTube](https://youtu.be/ebHoo7YhQ-w). It includes both the pitch and an end-to-end run against official vendor test/developer environments.
 
 ## The human problem
 
