@@ -12,6 +12,8 @@ Proofline is an AWS Strands accountability agent for consequential business oper
 
 [Watch the 2:42 demo on YouTube](https://youtu.be/ebHoo7YhQ-w). It includes both the pitch and an end-to-end run against official vendor test/developer environments.
 
+[Read the Agents for Humans build article on AWS Builder Center](https://builder.aws.com/content/3JKwZE5UJHuNepRJbPY8EwhWXDh/agents-for-humans-building-proofline-strands-an-ai-agent-that-refuses-to-guess).
+
 ## The human problem
 
 Support teams lose time moving between a CRM, chat, and payment processor. Automating that work creates a worse risk: an API can commit a refund and then lose its response. A naive agent retries and may duplicate the action; an optimistic agent claims success it cannot prove.
